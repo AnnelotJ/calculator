@@ -31,6 +31,7 @@ int main (){
 
     printf("Please provide me a String to calculate?\n");
     std::getline(std::cin,inputStringCalculation);
+    std::cout<<"\n";
     
     for (int i=0; i <inputStringCalculation.length(); i++){       
         if (inputStringCalculation[i] == '+' || inputStringCalculation[i] == '-' || inputStringCalculation[i] == '/' || inputStringCalculation[i] == '*' ){ 
@@ -98,12 +99,47 @@ int main (){
 
 int calculation(std::queue<char> calculationEnqueue){
     int answer; 
-
+    std::cout<< "This is the current notation of the calculation\n";
+        
     std::queue<char> copy = calculationEnqueue;
        while (!copy.empty()) {
            std::cout << copy.front() << " ";
            copy.pop();
        }
+
+    std::cout<<"\n";
+    std::stack<char>numStack; 
+
+    while(!calculationEnqueue.empty()){ 
+        if (calculationEnqueue.front()>= '0' && calculationEnqueue.front() <= '9'){
+          
+            numStack.push(calculationEnqueue.front());
+            calculationEnqueue.pop();
+
+        }   
+        else { 
+            // it should be an operator now  
+            //  we take the operator and get the two nnumbers from the stack 
+            
+            firstNum = numStack.top(); 
+            numstack.pop() 
+            secondNum = numstack.top(); 
+            numstack.pop() 
+            operator = calculationEnqueue.front(); 
+            calculationEnqueue.pop(); 
+
+            char tmpAns = firstNum 
+        }
+
+    }
+
+
+    // std::queue<char> copy = calculationEnqueue;
+    //    while (!copy.empty()) {
+    //        std::cout << copy.front() << " ";
+    //        copy.pop();
+    //    }
+
 
     return 4;
 
