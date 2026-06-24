@@ -121,14 +121,32 @@ int calculation(std::queue<char> calculationEnqueue){
             // it should be an operator now  
             //  we take the operator and get the two nnumbers from the stack 
             
-            firstNum = numStack.top(); 
-            numstack.pop() 
-            secondNum = numstack.top(); 
-            numstack.pop() 
-            operator = calculationEnqueue.front(); 
+            int firstNum = numStack.top() - '0'; 
+            numStack.pop(); 
+            int secondNum = numStack.top() - '0'; 
+            numStack.pop(); 
+            char calculationOperator = calculationEnqueue.front(); 
             calculationEnqueue.pop(); 
 
-            char tmpAns = firstNum 
+            int tmpAns; 
+            
+            switch (calculationOperator)
+            {
+            case '+':
+                tmpAns = firstNum + secondNum;
+                break;
+            case '-': 
+                tmpAns = firstNum - secondNum;
+                break;
+            case '*':
+                tmpAns = firstNum * secondNum;
+                break;
+            case '/':
+                tmpAns = firstNum / secondNum;
+                break;
+    
+
+            
         }
 
     }
