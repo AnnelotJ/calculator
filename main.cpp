@@ -92,15 +92,14 @@ int main (){
             operatorStack.pop();
          }
 
-    calculation(inputEnqueue);
+    std::cout<<calculation(inputEnqueue);
 
     return 0;
 }
 
 int calculation(std::queue<char> calculationEnqueue){
     int answer; 
-    std::cout<< "This is the current notation of the calculation\n";
-        
+    std::cout<< "This is the current notation of the calculation\n";     
     std::queue<char> copy = calculationEnqueue;
        while (!copy.empty()) {
            std::cout << copy.front() << " ";
@@ -111,55 +110,69 @@ int calculation(std::queue<char> calculationEnqueue){
     std::stack<char>numStack; 
 
     while(!calculationEnqueue.empty()){ 
-        if (calculationEnqueue.front()>= '0' && calculationEnqueue.front() <= '9'){
-          
-            numStack.push(calculationEnqueue.front());
-            calculationEnqueue.pop();
-
-        }   
-        else { 
-            // it should be an operator now  
-            //  we take the operator and get the two nnumbers from the stack 
-            
-            int firstNum = numStack.top() - '0'; 
-            numStack.pop(); 
-            int secondNum = numStack.top() - '0'; 
-            numStack.pop(); 
-            char calculationOperator = calculationEnqueue.front(); 
-            calculationEnqueue.pop(); 
-
-            int tmpAns; 
-            
-            switch (calculationOperator)
-            {
-            case '+':
-                tmpAns = firstNum + secondNum;
-                break;
-            case '-': 
-                tmpAns = firstNum - secondNum;
-                break;
-            case '*':
-                tmpAns = firstNum * secondNum;
-                break;
-            case '/':
-                tmpAns = firstNum / secondNum;
-                break;
-    
-
-            
+        if(!numStack.empty()){
+            std::cout<<"1. the numStack is as follows:\n";
+            std::stack<char> copeOperatorStack = numStack; 
+            while (!copeOperatorStack.empty()){
+                std::cout<< copeOperatorStack.top() << "\n"; 
+                copeOperatorStack.pop();
+            }
+            std::cout<<"\n";
         }
 
+        if (calculationEnqueue.front()>= '0' && calculationEnqueue.front() <= '9'){
+            numStack.push(calculationEnqueue.front());
+            calculationEnqueue.pop();
+            
+        }   
+        else { 
+            if (!numStack.empty()){
+                int firstNum = numStack.top() - '0'; 
+                numStack.pop(); 
+                int secondNum = numStack.top() - '0'; 
+                numStack.pop(); 
+                std::queue<char> copy = calculationEnqueue;
+
+                char calculationOperator = calculationEnqueue.front(); 
+                calculationEnqueue.pop(); 
+
+                int tmpAns;
+                
+                switch (calculationOperator){
+                case '+':
+                    tmpAns = firstNum + secondNum;
+                    numStack.push(char(tmpAns));
+                    break;
+                case '-': 
+                    tmpAns = firstNum - secondNum;
+                    numStack.push(char(tmpAns));
+                    break;
+                case '*':
+                tmpAns = firstNum * secondNum;
+                    numStack.push(char(tmpAns));
+                    std::cout<<(int)numStack.top();
+                    break;
+                case '/':
+                    tmpAns = firstNum / secondNum;
+                    numStack.push(char(tmpAns));
+                    break;
+            
+                }
+            }
+            std::cout<<"the numStack is as follows:\n";
+            std::stack<char> copeOperatorStack = numStack; 
+            while (!copeOperatorStack.empty()){
+                std::cout<< copeOperatorStack.top() << "\n"; 
+                copeOperatorStack.pop();
+            }
+            std::cout<<"\n";
+
+
+        }
     }
 
 
-    // std::queue<char> copy = calculationEnqueue;
-    //    while (!copy.empty()) {
-    //        std::cout << copy.front() << " ";
-    //        copy.pop();
-    //    }
-
-
-    return 4;
+    return answer;
 
 }
 
