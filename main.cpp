@@ -141,20 +141,23 @@ int calculation(std::queue<char> calculationEnqueue){
                 switch (calculationOperator){
                 case '+':
                     tmpAns = firstNum + secondNum;
-                    numStack.push(char(tmpAns));
+                    tmpAns = tmpAns + '0';
+                    numStack.push(tmpAns);
                     break;
                 case '-': 
                     tmpAns = firstNum - secondNum;
-                    numStack.push(char(tmpAns));
+                    tmpAns = tmpAns + '0';
+                    numStack.push(tmpAns);
                     break;
                 case '*':
-                tmpAns = firstNum * secondNum;
-                    numStack.push(char(tmpAns));
-                    std::cout<<(int)numStack.top();
+                    tmpAns = firstNum * secondNum;
+                    tmpAns = tmpAns + '0';
+                    numStack.push(tmpAns);
                     break;
                 case '/':
                     tmpAns = firstNum / secondNum;
-                    numStack.push(char(tmpAns));
+                    tmpAns = tmpAns + '0';
+                    numStack.push(tmpAns);
                     break;
             
                 }
