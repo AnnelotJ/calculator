@@ -11,7 +11,7 @@
 // queue is where all the numbers are stored
 
 std::stack<char> operatorStack;
-std::queue<char> inputEnqueue;
+std::queue<int> inputEnqueue;
 std::unordered_map<char, int> operatorValuesMap =
     {
         {'*', 2},
@@ -24,7 +24,7 @@ std::unordered_map<char, int> operatorValuesMap =
 void pushOperatorsToStack (char);
 void pushNumbersToEnqueue (int); 
 bool isHighPrecedence(char, char);
-int calculation(std::queue<char>);
+int calculation(std::queue<int>);
 
 int main (){
     std::string inputStringCalculation; 
@@ -83,10 +83,10 @@ int main (){
         }
 
         else  {
-            pushNumbersToEnqueue(inputStringCalculation[i]);
+
+            pushNumbersToEnqueue(inputStringCalculation[i] - '0');
         }
     }
-    // The last item must be added aswell
         while(!operatorStack.empty()){ 
             inputEnqueue.push(operatorStack.top()); 
             operatorStack.pop();
@@ -97,29 +97,20 @@ int main (){
     return 0;
 }
 
-int calculation(std::queue<char> calculationEnqueue){
-    int answer; 
+int calculation(std::queue<int> calculationEnqueue){
     std::cout<< "This is the current notation of the calculation\n";     
-    std::queue<char> copy = calculationEnqueue;
+    std::queue<int> copy = calculationEnqueue;
        while (!copy.empty()) {
            std::cout << copy.front() << " ";
            copy.pop();
        }
 
     std::cout<<"\n";
+
+    int answer;
     std::stack<char>numStack; 
 
     while(!calculationEnqueue.empty()){ 
-        if(!numStack.empty()){
-            std::cout<<"1. the numStack is as follows:\n";
-            std::stack<char> copeOperatorStack = numStack; 
-            while (!copeOperatorStack.empty()){
-                std::cout<< copeOperatorStack.top() << "\n"; 
-                copeOperatorStack.pop();
-            }
-            std::cout<<"\n";
-        }
-
         if (calculationEnqueue.front()>= '0' && calculationEnqueue.front() <= '9'){
             numStack.push(calculationEnqueue.front());
             calculationEnqueue.pop();
@@ -131,7 +122,6 @@ int calculation(std::queue<char> calculationEnqueue){
                 numStack.pop(); 
                 int secondNum = numStack.top() - '0'; 
                 numStack.pop(); 
-                std::queue<char> copy = calculationEnqueue;
 
                 char calculationOperator = calculationEnqueue.front(); 
                 calculationEnqueue.pop(); 
@@ -162,19 +152,8 @@ int calculation(std::queue<char> calculationEnqueue){
             
                 }
             }
-            std::cout<<"the numStack is as follows:\n";
-            std::stack<char> copeOperatorStack = numStack; 
-            while (!copeOperatorStack.empty()){
-                std::cout<< copeOperatorStack.top() << "\n"; 
-                copeOperatorStack.pop();
-            }
-            std::cout<<"\n";
-
-
         }
     }
-
-
     return answer;
 
 }
