@@ -150,7 +150,7 @@ int calculation(std::queue<int> calculationEnqueue){
 
 
 bool isHighPrecedence (char operatorFromStack,char currentOperator){
-    if ( operatorValuesMap[operatorFromStack] > operatorValuesMap[currentOperator]){
+    if ( operatorValuesMap[operatorFromStack] >= operatorValuesMap[currentOperator]){
         return true;
     }
     else {
