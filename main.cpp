@@ -108,50 +108,44 @@ int calculation(std::queue<int> calculationEnqueue){
     std::cout<<"\n";
 
     int answer;
-    std::stack<char>numStack; 
+    std::stack<int>numStack; 
 
     while(!calculationEnqueue.empty()){ 
-        if (calculationEnqueue.front()>= '0' && calculationEnqueue.front() <= '9'){
+        if (calculationEnqueue.front()>= 0 && calculationEnqueue.front() <= 9){
             numStack.push(calculationEnqueue.front());
             calculationEnqueue.pop();
             
         }   
-        else { 
-            if (!numStack.empty()){
-                int firstNum = numStack.top() - '0'; 
-                numStack.pop(); 
-                int secondNum = numStack.top() - '0'; 
-                numStack.pop(); 
+        else {     
+            int firstNum = numStack.top() ; 
+            numStack.pop(); 
+            int secondNum = numStack.top() ; 
+            numStack.pop(); 
 
-                char calculationOperator = calculationEnqueue.front(); 
-                calculationEnqueue.pop(); 
+            int calculationOperator = calculationEnqueue.front(); 
+            calculationEnqueue.pop(); 
 
-                int tmpAns;
+            int tmpAns;
                 
                 switch (calculationOperator){
-                case '+':
+                case 43:
                     tmpAns = firstNum + secondNum;
-                    tmpAns = tmpAns + '0';
                     numStack.push(tmpAns);
                     break;
-                case '-': 
+                case 45: 
                     tmpAns = firstNum - secondNum;
-                    tmpAns = tmpAns + '0';
                     numStack.push(tmpAns);
                     break;
-                case '*':
+                case 42 :
                     tmpAns = firstNum * secondNum;
-                    tmpAns = tmpAns + '0';
                     numStack.push(tmpAns);
                     break;
-                case '/':
+                case 47:
                     tmpAns = firstNum / secondNum;
-                    tmpAns = tmpAns + '0';
                     numStack.push(tmpAns);
                     break;
             
                 }
-            }
         }
     }
     return answer;

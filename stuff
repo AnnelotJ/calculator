@@ -25,12 +25,10 @@
             }
 
 
-                                I want to see what the current stack is and how it is organised
-                    std::cout<<"the stack is as follows:\n";
-                    std::stack<char> copeOperatorStack = operatorStack; 
-                    while (!copeOperatorStack.empty()){
-                        std::cout<< copeOperatorStack.top() << "\n"; 
-                        copeOperatorStack.pop();
+std::cout<<"the numStack is as follows:\n";
+            std::stack<char> copeOperatorStack = operatorStack; 
+                while (!copeOperatorStack.empty()){
+                    std::cout<< copeOperatorStack.top() << "\n"; 
+                    copeOperatorStack.pop();
                     }
-                    std::cout<<"'\n";
-            }
+            std::cout<<"'\n";
