@@ -92,20 +92,13 @@ int main (){
             operatorStack.pop();
          }
 
-    std::cout<<calculation(inputEnqueue);
+    std::cout<<calculation(inputEnqueue) << "\n";
+
 
     return 0;
 }
 
 int calculation(std::queue<int> calculationEnqueue){
-    std::cout<< "This is the current notation of the calculation\n";     
-    std::queue<int> copy = calculationEnqueue;
-       while (!copy.empty()) {
-           std::cout << copy.front() << " ";
-           copy.pop();
-       }
-
-    std::cout<<"\n";
 
     int answer;
     std::stack<int>numStack; 
@@ -117,9 +110,9 @@ int calculation(std::queue<int> calculationEnqueue){
             
         }   
         else {     
-            int firstNum = numStack.top() ; 
-            numStack.pop(); 
             int secondNum = numStack.top() ; 
+            numStack.pop(); 
+            int firstNum = numStack.top() ; 
             numStack.pop(); 
 
             int calculationOperator = calculationEnqueue.front(); 
@@ -146,8 +139,11 @@ int calculation(std::queue<int> calculationEnqueue){
                     break;
             
                 }
+
         }
     }
+    answer = numStack.top(); 
+    numStack.pop();
     return answer;
 
 }
